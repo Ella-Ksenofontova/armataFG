@@ -58,9 +58,13 @@ function startwatch() {
 	watch(['app/*.html'], { usePolling: true }).on('change', browserSync.reload)
 }
 
-pkg.task('deploy', function() {
-    return pkg.src('./app/**/*')
-        .pipe(ghPages());
+pkg.task("build", function () {
+	return pkg.src("./app/*")
+		.pipe(pkg.dest("./dist"));
+}
+)
+pkg.task('deploy', function () {
+	return pkg.src('./dist/**/*', { allowEmpty: true }).pipe(ghPages({remoteUrl: "https://github.com/Ella-Ksenofontova/armataFG" }));
 });
 
 export { scripts, styles }
