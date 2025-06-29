@@ -165,7 +165,7 @@ $(document).ready(function() {
 			$.smoothScroll();
 		}
 	} catch(err) {
-
+		
 	};
 
 	$("img, a").on("dragstart", function(event) { event.preventDefault(); });
